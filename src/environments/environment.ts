@@ -3,7 +3,11 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "http://api.openweathermap.org/data/2.5/",
+  apiKey1day: "7c1f8c0e539ea7f4d1d892e6a613b588",
+  apiKey5days: "256a3a8e0f7b31283d5b5bc182e58409",
+  CityId: "3195506"
 };
 
 /*

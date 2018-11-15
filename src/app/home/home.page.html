@@ -1,12 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title text-center> Weather forcast </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content margin>
+  <ion-item class="CityInfo">
+    <p text-center>{{ data.name }}</p>
+    <p text-center>
+      Refreshed at
+      <ion-datetime
+        display-format="DD.MM.YYYY  hh:mm A"
+        [(ngModel)]="currentDate"
+      >
+      </ion-datetime>
+    </p>
+  </ion-item>
+
+  <ion-item class="forcast">
+    <!-- Add card content here! -->
+    <div class="currentInfo">
+      <p text-center>Current temperature: {{ data.main.temp }} K</p>
+      <p text-center>description: {{ data.weather[0].description }}</p>
+      <p text-center>humidity: {{ data.main.humidity }} %</p>
+      <p text-center>pressure: {{ data.main.pressure }}</p>
+    </div>
+    <div
+      class="furtherWeather"
+      (tap)="getFiveDaysForcast()"
+      (press)="getFiveDaysForcast()"
+      (click)="getFiveDaysForcast()"
+    >
+      <p text-center>5 days weather forcast</p>
+    </div>
+  </ion-item>
+  <ion-spinner color="secondary" name="lines"></ion-spinner>
 </ion-content>

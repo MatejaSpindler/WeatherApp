@@ -1,1 +1,41 @@
+ion-header {
+  height: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 
+  ion-toolbar {
+    --background: var(--header-background);
+    ion-title {
+      color: white;
+    }
+  }
+}
+
+ion-content {
+  padding: 60px;
+  margin: 16px;
+
+  ion-item:first-child {
+    --border: var(--border-color);
+  }
+  ion-item.CityInfo {
+    padding: 44px;
+    width: 320px;
+    margin: 5px;
+    display: table;
+    p {
+      display: table-row;
+    }
+  }
+  ion-item.forcast {
+    margin-top: 0;
+    .currentInfo,
+    .furtherWeather {
+      margin: 5px;
+
+      --border: var(--border-color);
+    }
+  }
+}
