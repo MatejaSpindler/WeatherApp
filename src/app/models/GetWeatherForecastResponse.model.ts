@@ -53,7 +53,7 @@ export interface City {
   country: string;
 }
 
-export interface Days5WeatherForecast {
+export interface GetWeatherForecastResponse {
   cod: string;
   message: number;
   cnt: number;

@@ -4,7 +4,7 @@ import { WeatherDataService } from "../services/weather-data-service.service";
 import "rxjs/add/operator/map";
 import * as moment from "moment";
 import { Datetime, NavController } from "@ionic/angular";
-import { GetCurrentWeatherDataResponse } from "../models/CurrentWeatherData.model";
+import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.model";
 
 @Component({
   selector: "app-home",
@@ -12,8 +12,8 @@ import { GetCurrentWeatherDataResponse } from "../models/CurrentWeatherData.mode
   styleUrls: ["home.page.scss"]
 })
 export class HomePage {
-  currentWeatherViewModel: GetCurrentWeatherDataResponse;
-  refreshedAtDate: any;
+  currentWeatherViewModel: GetCurrentWeatherResponse;
+  refreshedAtDate: string;
   constructor(
     private weatherService: WeatherDataService,
     public navCtrl: NavController
@@ -22,11 +22,9 @@ export class HomePage {
   ionViewWillEnter() {
     this.weatherService
       .getCurrentWeatherData()
-      .subscribe((data: GetCurrentWeatherDataResponse) => {
+      .subscribe((data: GetCurrentWeatherResponse) => {
         this.currentWeatherViewModel = data;
         this.refreshedAtDate = moment().format();
-        console.log(new Date());
-        console.log(this.refreshedAtDate);
       });
   }
 

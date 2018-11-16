@@ -1,4 +1,3 @@
-// declare module WeatherData {
 export interface Coord {
   lon: number;
   lat: number;
@@ -37,7 +36,7 @@ export interface Sys {
   sunset: number;
 }
 
-export interface GetCurrentWeatherDataResponse {
+export interface GetCurrentWeatherResponse {
   coord: Coord;
   weather: Weather[];
   base: string;
@@ -51,4 +50,3 @@ export interface GetCurrentWeatherDataResponse {
   name: string;
   cod: number;
 }
-// }
