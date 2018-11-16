@@ -4,34 +4,55 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content margin>
-  <ion-item class="CityInfo">
-    <p text-center>{{ currentWeatherViewModel.name }}</p>
-    <p text-center>
-      Refreshed at
-      <ion-datetime
-        display-format="DD.MM.YYYY  hh:mm A"
-        [(ngModel)]="refreshedAtDate"
-      >
-      </ion-datetime>
-    </p>
-  </ion-item>
+<ion-content>
+  <ion-grid margin no-padding>
+    <ion-row align-items-stretch>
+      <ion-col size="12">
+        <ion-card class="CityInfo" text-center>
+          <p text-center>{{ currentWeatherViewModel.name }}</p>
 
-  <ion-item class="forcast">
-    <!-- Add card content here! -->
-    <div class="currentInfo">
-      <p text-center>
-        Current temperature: {{ currentWeatherViewModel.main.temp }} K
-      </p>
-      <p text-center>
-        description: {{ currentWeatherViewModel.weather[0].description }}
-      </p>
-      <p text-center>humidity: {{ currentWeatherViewModel.main.humidity }} %</p>
-      <p text-center>pressure: {{ currentWeatherViewModel.main.pressure }}</p>
-    </div>
-    <div tappable class="furtherWeather" (click)="getFiveDaysForcast($event)">
-      <p text-center>5 days weather forcast</p>
-    </div>
-  </ion-item>
+          <p text-center>
+            Refreshed at
+            <ion-datetime
+              display-format="DD.MM.YYYY  hh:mm A"
+              [(ngModel)]="refreshedAtDate"
+            >
+            </ion-datetime>
+          </p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-stretch>
+      <ion-col size="6" align-self-stretch>
+        <!-- Add card content here! -->
+        <ion-card class="forecast">
+          <p text-center>
+            Current temperature: {{ currentWeatherViewModel.main.temp }} C
+          </p>
+          <p text-center>
+            description: {{ currentWeatherViewModel.weather[0].description }}
+          </p>
+          <p text-center>
+            humidity: {{ currentWeatherViewModel.main.humidity }} %
+          </p>
+          <p text-center>
+            pressure: {{ currentWeatherViewModel.main.pressure }}
+          </p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" align-self-stretch>
+        <ion-card
+          class="forecast"
+          tappable
+          (click)="getFiveDaysForcast($event)"
+        >
+          <p text-center>5 days weather forcast</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-spinner color="secondary" name="lines"></ion-spinner>
 </ion-content>
