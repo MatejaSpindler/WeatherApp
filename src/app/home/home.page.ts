@@ -2,7 +2,7 @@ import { ForecastPage } from "../forecast/forecast.page";
 import { Component } from "@angular/core";
 import { WeatherDataService } from "../services/weather-data-service.service";
 import "rxjs/add/operator/map";
-import { Moment, isMoment } from "moment";
+import * as moment from "moment";
 import { Datetime, NavController } from "@ionic/angular";
 import { GetCurrentWeatherDataResponse } from "../models/CurrentWeatherData.model";
 
@@ -13,8 +13,7 @@ import { GetCurrentWeatherDataResponse } from "../models/CurrentWeatherData.mode
 })
 export class HomePage {
   currentWeatherViewModel: GetCurrentWeatherDataResponse;
-  moment: Moment;
-  refreshedAtDate: string;
+  refreshedAtDate: any;
   constructor(
     private weatherService: WeatherDataService,
     public navCtrl: NavController
@@ -25,7 +24,7 @@ export class HomePage {
       .getCurrentWeatherData()
       .subscribe((data: GetCurrentWeatherDataResponse) => {
         this.currentWeatherViewModel = data;
-        this.refreshedAtDate = new Date().toISOString();
+        this.refreshedAtDate = moment().format();
         console.log(new Date());
         console.log(this.refreshedAtDate);
       });
