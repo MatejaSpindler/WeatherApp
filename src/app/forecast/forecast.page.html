@@ -1,12 +1,30 @@
 <ion-header>
   <ion-toolbar> <ion-title>forcast</ion-title> </ion-toolbar>
 </ion-header>
+<ion-item>
+  <p>{{ Days5ForecastViewModel.city.name }}</p>
+</ion-item>
 
 <ion-content padding>
-  <ion-card *ngFor="let wInfo; of">
+  <ion-card *ngFor="let wInfo of Days5ForecastViewModel.list">
     <ion-card-header>
-      <ion-card-title>Hello World</ion-card-title>
+      <ion-card-title>
+        <ion-item>
+          <ion-datetime
+            display-format="DD.MM.YYYY  hh:mm A"
+            [(ngModel)]="wInfo.dt"
+          >
+          </ion-datetime>
+        </ion-item>
+      </ion-card-title>
     </ion-card-header>
-    <ion-card-content> <p>The content for this card</p> </ion-card-content>
+    <ion-card-content>
+      <div class="currentInfo">
+        <p>Description: {{ wInfo.weather[0].description }}</p>
+        <p>Temperature: {{ wInfo.main.temp }}</p>
+        <p>humidity: {{ wInfo.main.humidity }}</p>
+        <p>pressure: {{ wInfo.main.pressure }}</p>
+      </div>
+    </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,7 +1,10 @@
-import { environment } from "./../../environments/environment";
+import { GetCurrentWeatherDataResponse } from "../models/CurrentWeatherData.model";
+import { environment } from "../../environments/environment";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 import "rxjs/add/operator/map";
+import { Observable } from "rxjs";
+import { Days5WeatherForecast } from "../models/Days5WeatherForecast";
 
 const API_URL = environment.apiUrl;
 const Api_KEY1 = environment.apiKey1day;
@@ -12,15 +15,17 @@ const CityId = environment.CityId;
   providedIn: "root"
 })
 export class WeatherDataService {
-  constructor(public http: Http) {}
+  constructor(public http: HttpClient) {}
 
-  getCurrentWeatherData() {
-    return this.http.get(API_URL + "weather?q=Maribor&APPID=" + Api_KEY1);
+  getCurrentWeatherData(): Observable<GetCurrentWeatherDataResponse> {
+    return this.http.get<GetCurrentWeatherDataResponse>(
+      API_URL + "weather?q=Maribor&APPID=" + Api_KEY1 + "&units=metric"
+    );
   }
 
-  get5DaysweatherData() {
-    return this.http.get(
-      API_URL + "forecast?id=" + CityId + "&APPID=" + API_KEY5
+  get5DaysweatherData(): Observable<Days5WeatherForecast> {
+    return this.http.get<Days5WeatherForecast>(
+      API_URL + "forecast?id=" + CityId + "&APPID=" + API_KEY5 + "&units=metric"
     );
   }
 }

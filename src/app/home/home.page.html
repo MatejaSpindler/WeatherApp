@@ -1,17 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center> Weather forcast </ion-title>
+    <ion-title text-center> Weather forecast </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content margin>
   <ion-item class="CityInfo">
-    <p text-center>{{ data.name }}</p>
+    <p text-center>{{ currentWeatherViewModel.name }}</p>
     <p text-center>
       Refreshed at
       <ion-datetime
         display-format="DD.MM.YYYY  hh:mm A"
-        [(ngModel)]="currentDate"
+        [(ngModel)]="refreshedAtDate"
       >
       </ion-datetime>
     </p>
@@ -20,17 +20,16 @@
   <ion-item class="forcast">
     <!-- Add card content here! -->
     <div class="currentInfo">
-      <p text-center>Current temperature: {{ data.main.temp }} K</p>
-      <p text-center>description: {{ data.weather[0].description }}</p>
-      <p text-center>humidity: {{ data.main.humidity }} %</p>
-      <p text-center>pressure: {{ data.main.pressure }}</p>
+      <p text-center>
+        Current temperature: {{ currentWeatherViewModel.main.temp }} K
+      </p>
+      <p text-center>
+        description: {{ currentWeatherViewModel.weather[0].description }}
+      </p>
+      <p text-center>humidity: {{ currentWeatherViewModel.main.humidity }} %</p>
+      <p text-center>pressure: {{ currentWeatherViewModel.main.pressure }}</p>
     </div>
-    <div
-      class="furtherWeather"
-      (tap)="getFiveDaysForcast()"
-      (press)="getFiveDaysForcast()"
-      (click)="getFiveDaysForcast()"
-    >
+    <div tappable class="furtherWeather" (click)="getFiveDaysForcast($event)">
       <p text-center>5 days weather forcast</p>
     </div>
   </ion-item>
