@@ -1,6 +1,12 @@
 <ion-header>
-  <ion-toolbar> <ion-title>forcast</ion-title> </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="navigateToHomePage()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>forcast</ion-title>
+  </ion-toolbar>
 </ion-header>
+
 <ion-item>
   <p>{{ Days5ForecastViewModel?.city.name }}</p>
 </ion-item>

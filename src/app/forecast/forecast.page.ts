@@ -24,4 +24,8 @@ export class ForecastPage implements OnInit {
         this.Days5ForecastViewModel = data;
       });
   }
+
+  navigateToHomePage() {
+    this.navCtrl.navigateForward("/home");
+  }
 }
