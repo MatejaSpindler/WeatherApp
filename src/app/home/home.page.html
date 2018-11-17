@@ -12,12 +12,7 @@
           <p text-center>{{ currentWeatherViewModel?.name }}</p>
 
           <p text-center>
-            Refreshed at
-            <ion-datetime
-              display-format="DD.MM.YYYY  hh:mm A"
-              [(ngModel)]="refreshedAtDate"
-            >
-            </ion-datetime>
+            Refreshed at <ion-label> {{ refreshedAtDate }} </ion-label>
           </p>
         </ion-card>
       </ion-col>

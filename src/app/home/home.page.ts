@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { WeatherDataService } from "../services/weather-data-service.service";
 import "rxjs/add/operator/map";
 import * as moment from "moment";
+import "moment/min/locales";
 import { Datetime, NavController } from "@ionic/angular";
 import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.model";
 
@@ -14,6 +15,7 @@ import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.m
 export class HomePage {
   currentWeatherViewModel: GetCurrentWeatherResponse;
   refreshedAtDate: string;
+
   constructor(
     private weatherService: WeatherDataService,
     public navCtrl: NavController
@@ -24,7 +26,7 @@ export class HomePage {
       .getCurrentWeatherData()
       .subscribe((data: GetCurrentWeatherResponse) => {
         this.currentWeatherViewModel = data;
-        this.refreshedAtDate = moment().format();
+        this.refreshedAtDate = moment().format("L");
       });
   }
 

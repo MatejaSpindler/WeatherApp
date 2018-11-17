@@ -7,7 +7,8 @@ export const environment = {
   apiUrl: "http://api.openweathermap.org/data/2.5/",
   apiKey1day: "7c1f8c0e539ea7f4d1d892e6a613b588",
   apiKey5days: "256a3a8e0f7b31283d5b5bc182e58409",
-  CityId: "3195506"
+  CityId: "3195506",
+  localeCode: "sl-SL"
 };
 
 /*

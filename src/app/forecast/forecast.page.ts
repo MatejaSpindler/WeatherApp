@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { WeatherDataService } from "../services/weather-data-service.service";
 import { NavController, NavParams } from "@ionic/angular";
 import { GetWeatherForecastResponse } from "../models/GetWeatherForecastResponse.model";
+import * as moment from "moment";
 
 @Component({
   selector: "app-forecast",
@@ -10,7 +11,6 @@ import { GetWeatherForecastResponse } from "../models/GetWeatherForecastResponse
 })
 export class ForecastPage implements OnInit {
   Days5ForecastViewModel: GetWeatherForecastResponse;
-  currentDateTime: string = new Date().toDateString();
 
   constructor(
     private weatherService: WeatherDataService,
@@ -21,8 +21,6 @@ export class ForecastPage implements OnInit {
     this.weatherService
       .get5DaysWeatherData()
       .subscribe((data: GetWeatherForecastResponse) => {
-        console.log(data);
-
         this.Days5ForecastViewModel = data;
       });
   }
