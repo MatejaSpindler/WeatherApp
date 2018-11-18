@@ -4,29 +4,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid margin no-padding>
-    <ion-row align-items-stretch>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
       <ion-col size="12">
-        <ion-card class="CityInfo" text-center>
-          <p text-center>{{ currentWeatherViewModel?.name }}</p>
-
-          <p text-center>
-            Refreshed at <ion-label> {{ refreshedAtDate }} </ion-label>
-          </p>
+        <ion-card class="cityInfo centerContent">
+          <ion-label text-center>
+            {{ currentWeatherViewModel?.name }}
+          </ion-label>
+          <ion-label text-center>
+            Refreshed at {{ refreshedAtDate }}
+          </ion-label>
         </ion-card>
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-stretch>
+    <ion-row align-items-stretch class="forecasts">
       <ion-col size="6">
         <!-- Add card content here! -->
-        <ion-card class="forecast">
+        <ion-card class="currentInfo centerContent">
           <p text-center>
             Current temperature: {{ currentWeatherViewModel?.main?.temp }} °C
           </p>
           <p text-center>
-            description:
+            Description:
             {{ (currentWeatherViewModel?.weather)[0]?.description }}
           </p>
           <p text-center>
@@ -38,17 +39,31 @@
         </ion-card>
       </ion-col>
 
-      <ion-col size="6" align-self-stretch>
-        <ion-card
-          class="forecast"
-          tappable
-          (click)="getFiveDaysForcast($event)"
-        >
-          <p text-center>5 days weather forecast</p>
+      <ion-col size="6">
+        <ion-card class="forecast centerContent">
+          <ng-container *ngFor="let wInfo of days5ForecastViewModel?.list">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-item>
+                    <ion-label>
+                      {{ wInfo?.dt * 1000 | date: "short" }}
+                    </ion-label>
+                  </ion-item>
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <div class="currentInfo">
+                  <p>Description: {{ (wInfo?.weather)[0].description }}</p>
+                  <p>Temperature: {{ wInfo?.main.temp }}</p>
+                  <p>humidity: {{ wInfo?.main.humidity }}</p>
+                  <p>pressure: {{ wInfo?.main.pressure }}</p>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ng-container>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- <ion-spinner color="secondary" name="lines"></ion-spinner> -->
 </ion-content>

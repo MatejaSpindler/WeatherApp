@@ -3,13 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="navigateToHomePage()"></ion-back-button>
     </ion-buttons>
-    <ion-title>forcast</ion-title>
+
+    <ion-title
+      >5 day forecast for {{ Days5ForecastViewModel?.city.name }}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
-
-<ion-item>
-  <p>{{ Days5ForecastViewModel?.city.name }}</p>
-</ion-item>
 
 <ion-content padding>
   <ng-container *ngFor="let wInfo of Days5ForecastViewModel?.list">

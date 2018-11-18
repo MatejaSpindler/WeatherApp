@@ -75,7 +75,7 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --header-background: #e86e1e;
-
-  --border-color: #e86e1e;
+  /** custom **/
+  --header-background: var(--ion-color-primary);
+  --ion-padding: 16px;
 }
