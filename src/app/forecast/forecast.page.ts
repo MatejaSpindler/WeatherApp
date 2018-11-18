@@ -9,7 +9,7 @@ import * as moment from "moment";
   templateUrl: "./forecast.page.html",
   styleUrls: ["./forecast.page.scss"]
 })
-export class ForecastPage implements OnInit {
+export class ForecastPage {
   Days5ForecastViewModel: GetWeatherForecastResponse;
 
   constructor(
@@ -17,13 +17,14 @@ export class ForecastPage implements OnInit {
     public navCtrl: NavController
   ) {}
 
-  ngOnInit() {
-    this.weatherService
-      .get5DaysWeatherData()
-      .subscribe((data: GetWeatherForecastResponse) => {
-        this.Days5ForecastViewModel = data;
-      });
-  }
+  ionViewWillEnter() {}
+  // ngOnInit() {
+  //   this.weatherService
+  //     .get5DaysWeatherData()
+  //     .subscribe((data: GetWeatherForecastResponse) => {
+  //       this.Days5ForecastViewModel = data;
+  //     });
+  // }
 
   navigateToHomePage() {
     this.navCtrl.navigateForward("/home");

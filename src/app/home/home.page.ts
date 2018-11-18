@@ -4,7 +4,7 @@ import { WeatherDataService } from "../services/weather-data-service.service";
 import "rxjs/add/operator/map";
 import * as moment from "moment";
 import "moment/min/locales";
-import { Datetime, NavController } from "@ionic/angular";
+import { Datetime, NavController, LoadingController } from "@ionic/angular";
 import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.model";
 import { GetWeatherForecastResponse } from "../models/GetWeatherForecastResponse.model";
 
@@ -20,28 +20,33 @@ export class HomePage {
 
   constructor(
     private weatherService: WeatherDataService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController
   ) {}
 
-  ionViewWillEnter() {
-    this.setCurrentWeather();
-    this.setFiveDaysForecast();
+  async ionViewWillEnter() {
+    await this.presentLoading();
+    const currentWeatherLoad = this.setCurrentWeather();
+    const day5ForecastLoadLoad = this.setFiveDaysForecast();
+    await Promise.all([currentWeatherLoad, day5ForecastLoadLoad]);
+    this.loadingCtrl.dismiss();
   }
 
-  setFiveDaysForecast() {
-    this.weatherService
-      .get5DaysWeatherData()
-      .subscribe((data: GetWeatherForecastResponse) => {
-        this.days5ForecastViewModel = data;
-      });
+  async setFiveDaysForecast() {
+    const data = await this.weatherService.get5DaysWeatherData();
+    this.days5ForecastViewModel = data;
   }
 
-  setCurrentWeather() {
-    this.weatherService
-      .getCurrentWeatherData()
-      .subscribe((data: GetCurrentWeatherResponse) => {
-        this.currentWeatherViewModel = data;
-        this.refreshedAtDate = moment().format("L");
-      });
+  async setCurrentWeather() {
+    const data = await this.weatherService.getCurrentWeatherData();
+    this.currentWeatherViewModel = data;
+    this.refreshedAtDate = moment().format("L");
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: "Please wait..."
+    });
+    await loading.present();
   }
 }
