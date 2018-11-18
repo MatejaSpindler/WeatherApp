@@ -17,24 +17,15 @@ const CityId = environment.CityId;
 export class WeatherDataService {
   constructor(private http: HttpClient) {}
 
-  getCurrentWeatherData(): Promise<GetCurrentWeatherResponse> {
-    return this.http
-      .get<GetCurrentWeatherResponse>(
-        API_URL + "weather?q=Maribor&APPID=" + Api_KEY1 + "&units=metric"
-      )
-      .toPromise();
+  getCurrentWeatherData(): Observable<GetCurrentWeatherResponse> {
+    return this.http.get<GetCurrentWeatherResponse>(
+      API_URL + "weather?q=Maribor&APPID=" + Api_KEY1 + "&units=metric"
+    );
   }
 
-  get5DaysWeatherData(): Promise<GetWeatherForecastResponse> {
-    return this.http
-      .get<GetWeatherForecastResponse>(
-        API_URL +
-          "forecast?id=" +
-          CityId +
-          "&APPID=" +
-          API_KEY5 +
-          "&units=metric"
-      )
-      .toPromise();
+  get5DaysWeatherData(): Observable<GetWeatherForecastResponse> {
+    return this.http.get<GetWeatherForecastResponse>(
+      API_URL + "forecast?id=" + CityId + "&APPID=" + API_KEY5 + "&units=metric"
+    );
   }
 }

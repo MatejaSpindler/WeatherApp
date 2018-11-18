@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <ion-col size="12">
@@ -40,28 +43,25 @@
       </ion-col>
 
       <ion-col size="6">
-        <ion-card class="forecast centerContent">
-          <ng-container *ngFor="let wInfo of days5ForecastViewModel?.list">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-item>
-                    <ion-label>
-                      {{ wInfo?.dt * 1000 | date: "short" }}
-                    </ion-label>
-                  </ion-item>
-                </ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <div class="currentInfo">
-                  <p>Description: {{ (wInfo?.weather)[0].description }}</p>
-                  <p>Temperature: {{ wInfo?.main.temp }}</p>
-                  <p>humidity: {{ wInfo?.main.humidity }}</p>
-                  <p>pressure: {{ wInfo?.main.pressure }}</p>
-                </div>
-              </ion-card-content>
-            </ion-card>
-          </ng-container>
+        <ion-card
+          class="forecast centerContent"
+          *ngFor="let wInfo of days5ForecastViewModel?.list"
+        >
+          <ion-card-header>
+            <ion-card-title>
+              <ion-item>
+                <ion-label> {{ wInfo?.dt * 1000 | date: "short" }} </ion-label>
+              </ion-item>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="currentInfo">
+              <p>Description: {{ (wInfo?.weather)[0].description }}</p>
+              <p>Temperature: {{ wInfo?.main.temp }}</p>
+              <p>humidity: {{ wInfo?.main.humidity }}</p>
+              <p>pressure: {{ wInfo?.main.pressure }}</p>
+            </div>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

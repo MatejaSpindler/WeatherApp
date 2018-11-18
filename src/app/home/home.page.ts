@@ -26,19 +26,23 @@ export class HomePage {
 
   async ionViewWillEnter() {
     await this.presentLoading();
-    const currentWeatherLoad = this.setCurrentWeather();
-    const day5ForecastLoadLoad = this.setFiveDaysForecast();
-    await Promise.all([currentWeatherLoad, day5ForecastLoadLoad]);
+    await this.setWeatherData();
     this.loadingCtrl.dismiss();
   }
 
+  async setWeatherData() {
+    const currentWeatherLoad = this.setCurrentWeather();
+    const day5ForecastLoadLoad = this.setFiveDaysForecast();
+    await Promise.all([currentWeatherLoad, day5ForecastLoadLoad]);
+  }
+
   async setFiveDaysForecast() {
-    const data = await this.weatherService.get5DaysWeatherData();
+    const data = await this.weatherService.get5DaysWeatherData().toPromise();
     this.days5ForecastViewModel = data;
   }
 
   async setCurrentWeather() {
-    const data = await this.weatherService.getCurrentWeatherData();
+    const data = await this.weatherService.getCurrentWeatherData().toPromise();
     this.currentWeatherViewModel = data;
     this.refreshedAtDate = moment().format("L");
   }
@@ -48,5 +52,10 @@ export class HomePage {
       message: "Please wait..."
     });
     await loading.present();
+  }
+
+  async doRefresh(event) {
+    await this.setWeatherData();
+    event.target.complete();
   }
 }
