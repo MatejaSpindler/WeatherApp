@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ForecastPage } from "./forecast/forecast.page";
 import { HttpClientModule } from "@angular/common/http";
 import { environment } from "../environments/environment";
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { environment } from "../environments/environment";
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule
   ],
   providers: [

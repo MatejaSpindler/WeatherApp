@@ -7,6 +7,7 @@ import "moment/min/locales";
 import { Datetime, NavController, LoadingController } from "@ionic/angular";
 import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.model";
 import { GetWeatherForecastResponse } from "../models/GetWeatherForecastResponse.model";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-home",
@@ -21,19 +22,37 @@ export class HomePage {
   constructor(
     private weatherService: WeatherDataService,
     public navCtrl: NavController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private storage: Storage
   ) {}
 
   async ionViewWillEnter() {
+    await this.tryLoadDataFromStorage();
     await this.presentLoading();
     await this.setWeatherData();
+    this.saveDataToStorage();
     this.loadingCtrl.dismiss();
+  }
+
+  saveDataToStorage() {
+    this.storage.set("currentWeatherViewModel", this.currentWeatherViewModel);
+    this.storage.set("days5ForecastViewModel", this.days5ForecastViewModel);
+  }
+
+  async tryLoadDataFromStorage() {
+    this.currentWeatherViewModel = await this.storage.get(
+      "currentWeatherViewModel"
+    );
+    this.days5ForecastViewModel = await this.storage.get(
+      "days5ForecastViewModel"
+    );
   }
 
   async setWeatherData() {
     const currentWeatherLoad = this.setCurrentWeather();
     const day5ForecastLoadLoad = this.setFiveDaysForecast();
     await Promise.all([currentWeatherLoad, day5ForecastLoadLoad]);
+    this.refreshedAtDate = moment().format("L");
   }
 
   async setFiveDaysForecast() {
@@ -44,7 +63,6 @@ export class HomePage {
   async setCurrentWeather() {
     const data = await this.weatherService.getCurrentWeatherData().toPromise();
     this.currentWeatherViewModel = data;
-    this.refreshedAtDate = moment().format("L");
   }
 
   async presentLoading() {

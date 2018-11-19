@@ -19,13 +19,13 @@ export class WeatherDataService {
 
   getCurrentWeatherData(): Observable<GetCurrentWeatherResponse> {
     return this.http.get<GetCurrentWeatherResponse>(
-      API_URL + "weather?q=Maribor&APPID=" + Api_KEY1 + "&units=metric"
+      `${API_URL}weather?id=${CityId}&APPID=${API_KEY5}&units=metric`
     );
   }
 
   get5DaysWeatherData(): Observable<GetWeatherForecastResponse> {
     return this.http.get<GetWeatherForecastResponse>(
-      API_URL + "forecast?id=" + CityId + "&APPID=" + API_KEY5 + "&units=metric"
+      `${API_URL}forecast?id=${CityId}&APPID=${API_KEY5}&units=metric`
     );
   }
 }
