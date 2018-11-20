@@ -1,0 +1,24 @@
+<ion-card
+  class="forecast centerContent"
+  *ngFor="let wInfo of weatherForecastList"
+>
+  <ion-card-header>
+    <ion-card-title>
+      <ion-item>
+        <ion-label> {{ wInfo?.dt * 1000 | date: "fullDate" }} </ion-label>
+      </ion-item>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label class="temperature">
+      <ion-img
+        src="{{
+        iconRootUrl
+    }}{{wInfo?.weather[0].icon}}.png"
+      >
+      </ion-img>
+      <p class="minTemp">{{ wInfo?.main.temp_min }}°C</p>
+      <p class="MaxTemp">{{ wInfo?.main.temp_max }}°C</p>
+    </ion-label>
+  </ion-card-content>
+</ion-card>

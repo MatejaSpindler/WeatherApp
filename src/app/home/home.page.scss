@@ -20,14 +20,6 @@ ion-content {
     ion-card {
       margin: 0px;
 
-      &.centerContent {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        padding: 5px;
-      }
-
       &.cityInfo {
         color: var(--ion-color-primary);
       }
@@ -35,6 +27,7 @@ ion-content {
       &.currentInfo,
       &.forecast {
         margin-top: 5px;
+
         ion-card {
           height: auto;
           margin-bottom: 5px;

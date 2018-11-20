@@ -8,7 +8,6 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { ForecastPage } from "./forecast/forecast.page";
 import { HttpClientModule } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { IonicStorageModule } from "@ionic/storage";

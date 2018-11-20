@@ -8,6 +8,7 @@ import { Datetime, NavController, LoadingController } from "@ionic/angular";
 import { GetCurrentWeatherResponse } from "../models/GetCurrentWeatherResponse.model";
 import { GetWeatherForecastResponse } from "../models/GetWeatherForecastResponse.model";
 import { Storage } from "@ionic/storage";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-home",
@@ -18,6 +19,7 @@ export class HomePage {
   currentWeatherViewModel: GetCurrentWeatherResponse;
   days5ForecastViewModel: GetWeatherForecastResponse;
   refreshedAtDate: string;
+  iconRootUrl: string;
 
   constructor(
     private weatherService: WeatherDataService,
@@ -27,6 +29,7 @@ export class HomePage {
   ) {}
 
   async ionViewWillEnter() {
+    this.iconRootUrl = this.weatherService.getIconRoot();
     await this.tryLoadDataFromStorage();
     await this.presentLoading();
     await this.setWeatherData();

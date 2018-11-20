@@ -26,43 +26,47 @@
       <ion-col size="6">
         <!-- Add card content here! -->
         <ion-card class="currentInfo centerContent">
-          <p text-center>
-            Current temperature: {{ currentWeatherViewModel?.main?.temp }} °C
-          </p>
-          <p text-center>
-            Description:
-            {{ (currentWeatherViewModel?.weather)[0]?.description }}
-          </p>
-          <p text-center>
-            humidity: {{ currentWeatherViewModel?.main?.humidity }} %
-          </p>
-          <p text-center>
-            pressure: {{ currentWeatherViewModel?.main?.pressure }}
-          </p>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-item> <p style="font-weight: 300">Today</p> </ion-item>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-label class="temperature">
+              <ion-img
+                src="{{
+                  iconRootUrl
+              }}{{currentWeatherViewModel?.weather[0].icon}}.png"
+              ></ion-img>
+              <p text-center class="minTemp">
+                {{ currentWeatherViewModel?.main?.temp_min }} °C
+              </p>
+
+              <p text-center class="maxTemp">
+                {{ currentWeatherViewModel?.main?.temp_max }} °C
+              </p>
+            </ion-label>
+            <ion-label>
+              <p text-center>
+                Humidity : {{ currentWeatherViewModel?.main?.humidity }} %
+              </p>
+              <p text-center>
+                Pressure : {{ currentWeatherViewModel?.main?.pressure }} hPa
+              </p>
+              <p text-center>
+                Wind speed :
+                {{ currentWeatherViewModel?.wind?.speed }} meter/sec
+              </p>
+            </ion-label>
+          </ion-card-content>
         </ion-card>
       </ion-col>
 
       <ion-col size="6">
-        <ion-card
-          class="forecast centerContent"
-          *ngFor="let wInfo of days5ForecastViewModel?.list"
-        >
-          <ion-card-header>
-            <ion-card-title>
-              <ion-item>
-                <ion-label> {{ wInfo?.dt * 1000 | date: "short" }} </ion-label>
-              </ion-item>
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="currentInfo">
-              <p>Description: {{ (wInfo?.weather)[0].description }}</p>
-              <p>Temperature: {{ wInfo?.main.temp }}</p>
-              <p>humidity: {{ wInfo?.main.humidity }}</p>
-              <p>pressure: {{ wInfo?.main.pressure }}</p>
-            </div>
-          </ion-card-content>
-        </ion-card>
+        <app-weather-forecast
+          [weatherForecast]="days5ForecastViewModel?.list"
+        ></app-weather-forecast>
       </ion-col>
     </ion-row>
   </ion-grid>

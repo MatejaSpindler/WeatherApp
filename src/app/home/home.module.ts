@@ -1,10 +1,10 @@
+import { WeatherForecastComponent } from "./../weather-forecast/weather-forecast.component";
 import { Http, HttpModule } from "@angular/http";
 import { NgModule, Injectable } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-
 import { HomePage } from "./home.page";
 import { WeatherDataService } from "../services/weather-data-service.service";
 
@@ -22,6 +22,6 @@ import { WeatherDataService } from "../services/weather-data-service.service";
     ])
   ],
   providers: [WeatherDataService],
-  declarations: [HomePage]
+  declarations: [HomePage, WeatherForecastComponent]
 })
 export class HomePageModule {}

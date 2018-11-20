@@ -46,4 +46,72 @@ html {
       }
     }
   }
+
+  ion-content {
+    height: 100%;
+
+    ion-grid {
+      ion-row {
+        &.forecasts {
+          @media only screen and (max-width: 319px) {
+            flex-direction: column;
+            ion-col {
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+          }
+        }
+      }
+      ion-col {
+        padding: 0px;
+      }
+
+      ion-card {
+        margin: 0px;
+
+        ion-img {
+          width: 70px;
+          height: 50px;
+        }
+
+        ion-card-content {
+          display: flex;
+          p {
+            display: block;
+          }
+
+          .temperature {
+            display: block;
+
+            .minTemp {
+              font-weight: bolder;
+            }
+          }
+        }
+
+        &.cityInfo {
+          color: var(--ion-color-primary);
+        }
+
+        &.currentInfo,
+        &.forecast {
+          margin: 0px;
+          margin-top: 5px;
+        }
+
+        &.currentInfo {
+          margin-right: 2px;
+          height: fit-content;
+        }
+      }
+    }
+  }
+
+  .centerContent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+  }
 }
