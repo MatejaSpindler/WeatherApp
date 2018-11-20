@@ -26,55 +26,26 @@ html {
   }
 
   ion-content {
+    height: 100%;
     --background: #f0efef;
     --ion-item-background: white;
 
-    ion-grid {
+    .weatherInfoGrid {
       max-width: 320px;
-    }
-  }
 
-  @media only screen and (min-width: 768px) and (min-height: 768px) {
-    --ion-padding: 32px;
-    ion-header {
-      height: 56px;
-    }
-
-    ion-content {
-      ion-grid {
-        max-width: 460px;
-      }
-    }
-  }
-
-  ion-content {
-    height: 100%;
-
-    ion-grid {
-      ion-row {
-        &.forecasts {
-          @media only screen and (max-width: 319px) {
-            flex-direction: column;
-            ion-col {
-              width: 100% !important;
-              max-width: 100% !important;
-            }
-          }
-        }
-      }
       ion-col {
         padding: 0px;
       }
 
-      ion-card {
+      .weatherCard {
         margin: 0px;
 
-        ion-img {
-          width: 70px;
-          height: 50px;
-        }
+        .weatherCardContent {
+          ion-img {
+            width: 70px;
+            height: 50px;
+          }
 
-        ion-card-content {
           display: flex;
           p {
             display: block;
@@ -82,15 +53,10 @@ html {
 
           .temperature {
             display: block;
-
             .minTemp {
               font-weight: bolder;
             }
           }
-        }
-
-        &.cityInfo {
-          color: var(--ion-color-primary);
         }
 
         &.currentInfo,
@@ -113,5 +79,32 @@ html {
     flex-direction: column;
     text-align: center;
     padding: 5px;
+  }
+
+  .primaryColor {
+    color: var(--ion-color-primary);
+  }
+
+  @media only screen and (max-width: 319px) {
+    .forecasts {
+      flex-direction: column;
+      ion-col {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (min-height: 768px) {
+    --ion-padding: 32px;
+    ion-header {
+      height: 56px;
+    }
+
+    ion-content {
+      .weatherInfoGrid {
+        max-width: 460px;
+      }
+    }
   }
 }

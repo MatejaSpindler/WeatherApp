@@ -1,5 +1,5 @@
 <ion-card
-  class="forecast centerContent"
+  class="weatherCard forecast centerContent"
   *ngFor="let wInfo of weatherForecastList"
 >
   <ion-card-header>
@@ -9,7 +9,7 @@
       </ion-item>
     </ion-card-title>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content class="weatherCardContent">
     <ion-label class="temperature">
       <ion-img
         src="{{
