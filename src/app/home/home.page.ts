@@ -20,6 +20,7 @@ export class HomePage {
   days5ForecastViewModel: GetWeatherForecastResponse;
   refreshedAtDate: string;
   iconRootUrl: string;
+  WeatherForecastByDays: Array<GetWeatherForecastResponse> = [];
 
   constructor(
     private weatherService: WeatherDataService,
@@ -35,6 +36,21 @@ export class HomePage {
     await this.setWeatherData();
     this.saveDataToStorage();
     this.loadingCtrl.dismiss();
+
+    //        this.WeatherForecastByDays = Object.values(
+    //      this.days5ForecastViewModel.list.reduce((result, {
+    //       dt,
+    //       main.temp_min,
+    //       main.temp_max,
+    //       weather.icon
+
+    // }) => {
+    //   const date = result[dt].moment().format("L");
+
+    // )
+
+    // }
+    // ));
   }
 
   saveDataToStorage() {

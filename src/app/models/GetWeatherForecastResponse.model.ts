@@ -1,3 +1,5 @@
+import { Weather, Clouds, Wind, Coord } from "./Weather.model";
+
 export interface Main {
   temp: number;
   temp_min: number;
@@ -7,22 +9,6 @@ export interface Main {
   grnd_level: number;
   humidity: number;
   temp_kf: number;
-}
-
-export interface Weather {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-}
-
-export interface Clouds {
-  all: number;
-}
-
-export interface Wind {
-  speed: number;
-  deg: number;
 }
 
 export interface Sys {
@@ -39,11 +25,6 @@ export interface List {
   sys: Sys;
   dt_txt: string;
   snow: any;
-}
-
-export interface Coord {
-  lat: number;
-  lon: number;
 }
 
 export interface City {

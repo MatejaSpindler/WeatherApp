@@ -26,7 +26,7 @@ export class WeatherDataService {
 
   get5DaysWeatherData(): Observable<GetWeatherForecastResponse> {
     return this.http.get<GetWeatherForecastResponse>(
-      `${API_URL}${weatherDataUrl}forecast?id=${CityId}&APPID=${API_KEY5}&units=metric`
+      `${API_URL}${weatherDataUrl}forecast?id=${CityId}&APPID=${API_KEY5}&units=metric&cnt=5`
     );
   }
 
