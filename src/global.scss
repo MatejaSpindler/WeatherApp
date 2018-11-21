@@ -40,19 +40,22 @@ html {
       .weatherCard {
         margin: 0px;
 
+        .weatherCardHeader {
+          padding: 8px;
+
+          .weatherTimeInfo {
+            white-space: initial;
+          }
+        }
+
         .weatherCardContent {
+          padding: 5px;
           ion-img {
             width: 70px;
             height: 50px;
           }
 
-          display: flex;
-          p {
-            display: block;
-          }
-
           .temperature {
-            display: block;
             .minTemp {
               font-weight: bolder;
             }
